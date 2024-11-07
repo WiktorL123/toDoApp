@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1,
+    "name": "Update NBP API Project",
+    "start_date": "2024-11-08",
+    "end_date": "2024-11-15",
+    "description": "Add user login and registration, and process data from the NBP API."
+  },
+  {
+    "id": 2,
+    "name": "Prepare Presentation on React Native",
+    "start_date": "2024-11-10",
+    "end_date": "2024-11-17",
+    "description": "Discuss the basics and applications of React Native in mobile apps for iOS and Android."
+  },
+  {
+    "id": 3,
+    "name": "Team Project Review",
+    "start_date": "2024-11-11",
+    "end_date": "2024-11-11",
+    "description": "Review current progress in the team project 'Team Project' and next steps."
+  },
+  {
+    "id": 4,
+    "name": "Complete Modal in `AmountList`",
+    "start_date": "2024-11-08",
+    "end_date": "2024-11-12",
+    "description": "Refine display of item details in the `AmountList` modal and add descriptions."
+  },
+  {
+    "id": 5,
+    "name": "Refactor Code in Next.js Project",
+    "start_date": "2024-11-12",
+    "end_date": "2024-11-14",
+    "description": "Use folders with dynamic routes and `next/navigation` in Next.js for better organization."
+  },
+  {
+    "id": 6,
+    "name": "Explore TypeScript in Express",
+    "start_date": "2024-11-13",
+    "end_date": "2024-11-15",
+    "description": "Investigate the advantages of using TypeScript in an Express-based backend and prepare a demo."
+  },
+  {
+    "id": 7,
+    "name": "Review Project Fonts",
+    "start_date": "2024-11-14",
+    "end_date": "2024-11-14",
+    "description": "Upload TTF files to the project and test selected fonts across different components."
+  },
+  {
+    "id": 8,
+    "name": "Master Asynchronous JavaScript",
+    "start_date": "2024-11-08",
+    "end_date": "2024-11-18",
+    "description": "Understand async programming, Promises, and async/await for better code management."
+  },
+  {
+    "id": 9,
+    "name": "Prepare Test Report",
+    "start_date": "2024-11-16",
+    "end_date": "2024-11-20",
+    "description": "Prepare a report based on tests conducted in the NBP API project."
+  },
+  {
+    "id": 10,
+    "name": "Check SEO Settings for Application",
+    "start_date": "2024-11-18",
+    "end_date": "2024-11-20",
+    "description": "Review and optimize SEO settings for the application built in React."
+  }
+]
