@@ -3,5 +3,6 @@ export default interface ITodo {
     name: string;
     startDate: Date;
     endDate: Date;
+    category: string
     description: string;
 }

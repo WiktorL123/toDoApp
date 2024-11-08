@@ -12,10 +12,43 @@
     --background: #0a0a0a;
     --foreground: #ededed;
   }
+  *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body{
+    position: relative;
+  }
+  .todo-list-div{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .todo-container{
+    width: 30%;
+    margin: 12px 12px;
+    border: 1px solid rgba(4,191,36,0.85);
+    border-radius: 15px;
+    text-align: center;
+  }
+  .todo-button{
+    background: rgba(88,191,57,0.85);
+    border-radius: 15px;
+    border-bottom: 12px;
+  }
+  .modal{
+    position: absolute;
+    z-index: 1000;
+  }
+  .error-p{
+    color: red;
+  }
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+
 }

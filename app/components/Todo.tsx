@@ -6,15 +6,17 @@ import IToDoProps from "@/app/interfaces/IToDoProps";
 
 
 
-export default function Todo({id, name, startDate, endDate, description, onRemove = f=>f, onDescription = f=>f}: IToDoProps): JSX.Element{
-    console.log(`startDate: ${startDate} endDate: ${endDate}`)
+export default function Todo({id, name, startDate, endDate, category, description, onRemove = f=>f, onDescription = f=>f}: IToDoProps): JSX.Element{
+    console.log('category',category)
     return (
-        <div>
-            <h1>{name}</h1>
-            <p>data rozpoczęcia zadania: {startDate.toLocaleDateString()}</p>
-            <p>data zakończenia zadania: {endDate.toLocaleDateString()}</p>
-            <button onClick={()=>onRemove(id)}><FaTrash/></button>
-            <button onClick={()=>onDescription(description)}>pokaż opis</button>
-        </div>
+        <>
+            <h1 className={'todo-heading'}>{name}</h1>
+            <p className={'todo-p'}>data rozpoczęcia zadania: {startDate.toLocaleDateString()}</p>
+            <p className={'todo-p'}>data zakończenia zadania: {endDate.toLocaleDateString()}</p>
+            <p className={'todo-p'}>typ zadania: {category}</p>
+            <button onClick={()=>onRemove(id)} className={'todo-button'}><FaTrash/></button>
+            <button onClick={() => onDescription({id, name, startDate, endDate, category, description})} className={'todo-button'}>pokaż opis
+            </button>
+        </>
     )
 }
