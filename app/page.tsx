@@ -3,6 +3,7 @@ import todoData from './data/todos.json'
 import {JSX, useState} from "react";
 import TodoList from "@/app/components/TodoList";
 import ITodo from "@/app/interfaces/IToDo";
+import Filter from "@/app/components/Filter";
 
 
 
@@ -29,12 +30,19 @@ export default function Home() : JSX.Element {
         setSelectedTodo(null)
     }
     const handleChangeCategory =()=>{
-
+            
     }
 
     const filteredCategories = Array.from(new Set(todos.map(todo=>todo.category)))
   return (
 <>
+    <Filter
+        categories={filteredCategories}
+        selectedCategory={selectedCategory}
+        onChangeCategory={handleChangeCategory}
+    />
+
+
       <TodoList
       todos={todos}
       onRemoveTodo={handleRemove}
