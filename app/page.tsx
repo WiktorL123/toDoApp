@@ -29,11 +29,17 @@ export default function Home() : JSX.Element {
     const handleCloseDescription =()=>{
         setSelectedTodo(null)
     }
-    const handleChangeCategory =()=>{
-            
-    }
+
 
     const filteredCategories = Array.from(new Set(todos.map(todo=>todo.category)))
+
+    const handleChangeCategory =(category:string)=>{
+            setSelectedCategory(category)
+    }
+    const filteredTodos =selectedCategory ?
+        todos.filter(todo=>todo.category==selectedCategory) :todos
+
+
   return (
 <>
     <Filter
@@ -44,7 +50,7 @@ export default function Home() : JSX.Element {
 
 
       <TodoList
-      todos={todos}
+      todos={filteredTodos}
       onRemoveTodo={handleRemove}
       onDescriptionTodo={handleDescription}
       />
