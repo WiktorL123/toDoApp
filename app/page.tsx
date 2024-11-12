@@ -6,6 +6,8 @@ import ITodo from "@/app/interfaces/IToDo";
 import Filter from "@/app/components/Filter";
 
 
+function handleEdit() {
+
 
 export default function Home() : JSX.Element {
     const [todos, setTodos] = useState<ITodo[]>(
@@ -18,6 +20,7 @@ export default function Home() : JSX.Element {
         }))
     );
     const [selectedToDo, setSelectedTodo] = useState<ITodo|null>(null)
+    const [editingTodo, setEditingTodo] = useState<ITodo | null>(null)
     const [selectedCategory, setSelectedCategory] = useState<string>('all')
     const handleRemove = (id:number)=>{
       setTodos(todos.filter(t=>t.id!==id))
@@ -30,7 +33,9 @@ export default function Home() : JSX.Element {
         setSelectedTodo(null)
     }
 
-
+    const handleEdit = (todo: ITodo) => {
+        setEditingTodo(todo);
+    };
     const filteredCategories = Array.from(new Set(todos.map(todo=>todo.category)))
 
     const handleChangeCategory =(category:string)=>{
@@ -53,6 +58,7 @@ export default function Home() : JSX.Element {
       todos={filteredTodos}
       onRemoveTodo={handleRemove}
       onDescriptionTodo={handleDescription}
+      onEditTodo={handleEdit}
       />
     {selectedToDo && (
         <div style={modalStyle}>
@@ -89,4 +95,4 @@ const modalContentStyle: React.CSSProperties = {
     maxWidth: '500px',
     textAlign: 'center',
     color: 'black'
-};
+}};
