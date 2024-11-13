@@ -1,12 +1,12 @@
-'use client'
-import todoData from './data/todos.json'
-import {JSX, useState} from "react";
+'use client';
+import todoData from './data/todos.json';
+import React, { JSX, useState } from "react";
 import TodoList from "@/app/components/TodoList";
 import ITodo from "@/app/interfaces/IToDo";
 import Filter from "@/app/components/Filter";
+import EditTodoForm from "@/app/components/EditTodoForm";
 
 
-function handleEdit() {
 
 
 export default function Home() : JSX.Element {
@@ -19,61 +19,78 @@ export default function Home() : JSX.Element {
             description: todo.description
         }))
     );
-    const [selectedToDo, setSelectedTodo] = useState<ITodo|null>(null)
-    const [editingTodo, setEditingTodo] = useState<ITodo | null>(null)
-    const [selectedCategory, setSelectedCategory] = useState<string>('all')
-    const handleRemove = (id:number)=>{
-      setTodos(todos.filter(t=>t.id!==id))
+    const [selectedToDo, setSelectedTodo] = useState<ITodo | null>(null);
+    const [editingTodo, setEditingTodo] = useState<ITodo | null>(null);
+    const [selectedCategory, setSelectedCategory] = useState<string>('all');
 
-  };
-    const handleDescription =(todo:ITodo)=>{
-        setSelectedTodo(todo)
-    }
-    const handleCloseDescription =()=>{
-        setSelectedTodo(null)
-    }
+    const handleRemove = (id: number) => {
+        setTodos(todos.filter(t => t.id !== id));
+    };
+
+    const handleDescription = (todo: ITodo) => {
+        setSelectedTodo(todo);
+    };
+
+    const handleCloseDescription = () => {
+        setSelectedTodo(null);
+    };
 
     const handleEdit = (todo: ITodo) => {
         setEditingTodo(todo);
     };
-    const filteredCategories = Array.from(new Set(todos.map(todo=>todo.category)))
 
-    const handleChangeCategory =(category:string)=>{
-            setSelectedCategory(category)
+    const handleSaveEdit = (updatedTodo:ITodo)=>{
+        setTodos(todos.map(todo=>todo.id===updatedTodo.id ? updatedTodo : todo));
     }
-    const filteredTodos =selectedCategory ?
-        todos.filter(todo=>todo.category==selectedCategory) :todos
+    const handleCancelEdit = () =>{
+        setEditingTodo(null);
+    }
+
+    const filteredCategories = Array.from(new Set(todos.map(todo => todo.category)));
+
+    const handleChangeCategory = (category: string) => {
+        setSelectedCategory(category);
+    };
 
 
-  return (
-<>
-    <Filter
-        categories={filteredCategories}
-        selectedCategory={selectedCategory}
-        onChangeCategory={handleChangeCategory}
-    />
+    const filteredTodos = selectedCategory !== 'all'
+        ? todos.filter(todo => todo.category === selectedCategory)
+        : todos;
 
+    return (
+        <>
+            <Filter
+                categories={filteredCategories}
+                selectedCategory={selectedCategory}
+                onChangeCategory={handleChangeCategory}
+            />
+            <TodoList
+                todos={filteredTodos}
+                onRemoveTodo={handleRemove}
+                onDescriptionTodo={handleDescription}
+                onEditTodo={handleEdit}
+            />
+            {selectedToDo && (
+                <div style={modalStyle}>
+                    <div style={modalContentStyle}>
+                        <h2>{selectedToDo.name}</h2>
+                        <p>{selectedToDo.description}</p>
+                        <button onClick={handleCloseDescription}>[zamknij]</button>
+                    </div>
+                </div>
+            )}
 
-      <TodoList
-      todos={filteredTodos}
-      onRemoveTodo={handleRemove}
-      onDescriptionTodo={handleDescription}
-      onEditTodo={handleEdit}
-      />
-    {selectedToDo && (
-        <div style={modalStyle}>
-            <div style={modalContentStyle}>
-                <h2>{selectedToDo.name}</h2>
-                <p>{selectedToDo.description}</p>
-                <button onClick={handleCloseDescription}>[zamknij]</button>
-            </div>
-        </div>
-    )}
-
-</>
-
-  );
+            {editingTodo && (
+                <EditTodoForm
+                todo={editingTodo}
+                onSave={handleSaveEdit}
+                onCancel={handleCancelEdit}
+                />
+            )}
+        </>
+    );
 }
+
 const modalStyle: React.CSSProperties = {
     position: 'fixed',
     top: 0,
@@ -94,5 +111,5 @@ const modalContentStyle: React.CSSProperties = {
     width: '80%',
     maxWidth: '500px',
     textAlign: 'center',
-    color: 'black'
-}};
+    color: 'black',
+};
