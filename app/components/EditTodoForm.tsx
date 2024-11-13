@@ -1,7 +1,7 @@
 import IEditTodoFormProps from "@/app/interfaces/IEditTodoFormProps";
 import {useState} from "react";
 
-export default function EditTodoForm({todo, onSave, onCancel}:IEditTodoFormProps) {
+export default function EditTodoForm({todo, onSave, onCancel, onClose}:IEditTodoFormProps) {
     const [name, setName] = useState<string>(todo.name);
     const [description, setDescription] = useState<string>(todo.description);
     const [startDate, setStartDate] = useState<string>(
@@ -16,8 +16,8 @@ export default function EditTodoForm({todo, onSave, onCancel}:IEditTodoFormProps
         const updatedTodo = {
             ...todo,
             name,
-            startDate: new Date(startDate),
-            endDate: new Date(endDate),
+            startDate: startDate ? new Date(startDate) : null,
+            endDate: startDate ?  new Date(endDate) : null,
             description,
             category
         };
@@ -27,9 +27,16 @@ export default function EditTodoForm({todo, onSave, onCancel}:IEditTodoFormProps
 
     return (
         <div>
-            <input value={name} onChange={(e) => setName(e.target.value)} />
+            <input value={name} onChange={(e) => setName(e.target.value)}
+            placeholder={'nazwa zadania'}/>
+            <input value={description} onChange={(e) => setDescription(e.target.value)}
+            placeholder={'opis'}/>
+            <input value={startDate} onChange={(e) => setStartDate(e.target.value)}/>
+            <input value={endDate} onChange={(e) => setEndDate(e.target.value)}/>
+            <input value={category} onChange={(e) => setCategory(e.target.value)}/>
             <button onClick={handleSave}>zapisz</button>
             <button onClick={onCancel}>anuluj</button>
+            <button onClick={onClose}>[zamknij]</button>
         </div>
     )
 }

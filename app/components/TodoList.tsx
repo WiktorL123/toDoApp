@@ -3,7 +3,7 @@ import Todo from "@/app/components/Todo";
 import IToDoListProps from "@/app/interfaces/IToDoListProps";
 
 
-export default function TodoList({todos =[], onRemoveTodo = f=>f,onEditTodo=f=>f, onDescriptionTodo = f=>f }: IToDoListProps){
+export default function TodoList({todos =[], onRemoveTodo = f=> f, onEditTodo=f=>f, onDescriptionTodo = f=>f }: IToDoListProps){
     if (!todos.length) return <p className={'error-p'}>nie zanaleziono zadań do wykonania</p>
 
     return (

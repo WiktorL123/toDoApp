@@ -51,6 +51,9 @@ export default function Home() : JSX.Element {
     const handleChangeCategory = (category: string) => {
         setSelectedCategory(category);
     };
+    const handleCloseEdit=()=>{
+        setEditingTodo(null);
+    }
 
 
     const filteredTodos = selectedCategory !== 'all'
@@ -85,6 +88,8 @@ export default function Home() : JSX.Element {
                 todo={editingTodo}
                 onSave={handleSaveEdit}
                 onCancel={handleCancelEdit}
+                onClose={handleCloseEdit}
+
                 />
             )}
         </>
