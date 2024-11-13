@@ -1,6 +1,7 @@
 import IEditTodoFormProps from "@/app/interfaces/IEditTodoFormProps";
 import {useState} from "react";
 
+
 export default function EditTodoForm({todo, onSave, onCancel, onClose}:IEditTodoFormProps) {
     const [name, setName] = useState<string>(todo.name);
     const [description, setDescription] = useState<string>(todo.description);
@@ -11,6 +12,7 @@ export default function EditTodoForm({todo, onSave, onCancel, onClose}:IEditTodo
         todo.endDate ? todo.endDate.toISOString().substring(0, 10) : ''
     );
     const [category, setCategory] = useState<string>(todo.category);
+    const [errors, setErrors] = useState<{[key:string] :string}>({})
 
     const handleSave = () => {
         const updatedTodo = {
@@ -23,20 +25,23 @@ export default function EditTodoForm({todo, onSave, onCancel, onClose}:IEditTodo
         };
         onSave(updatedTodo);
     };
+    const handleValidate = () =>{
+
+    }
 
 
     return (
-        <div>
+        <div className={'edit-todo-form'}>
             <input value={name} onChange={(e) => setName(e.target.value)}
             placeholder={'nazwa zadania'}/>
-            <input value={description} onChange={(e) => setDescription(e.target.value)}
+            <textarea value={description} onChange={(e) => setDescription(e.target.value)}
             placeholder={'opis'}/>
             <input value={startDate} onChange={(e) => setStartDate(e.target.value)}/>
             <input value={endDate} onChange={(e) => setEndDate(e.target.value)}/>
             <input value={category} onChange={(e) => setCategory(e.target.value)}/>
             <button onClick={handleSave}>zapisz</button>
             <button onClick={onCancel}>anuluj</button>
-            <button onClick={onClose}>[zamknij]</button>
+            <button onClick={onClose} onSubmit={handleValidate}>[zamknij]</button>
         </div>
     )
 }

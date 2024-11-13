@@ -15,7 +15,7 @@ export default function Filter({
                 id="category-filter"
                 onChange={(e) => onChangeCategory(e.target.value)}
             >
-                <option value="">Wszystko</option>
+                <option value="all">Wszystko</option>
                 {categories.map((cat, index) => (
                     <option key={index} value={cat}>
                         {cat}

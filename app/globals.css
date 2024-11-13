@@ -44,6 +44,16 @@
   .error-p{
     color: red;
   }
+  .edit-todo-form *{
+    color: black;
+  }
+  .edit-todo-form input, textarea{
+    margin: 5px;
+  }
+  .edit-todo-form button{
+    color: white;
+    margin: 5px;
+  }
 }
 
 body {
