@@ -1,15 +1,14 @@
 /*
 *TODO:
-* 1. Refactor useState for fields of todos -DONE
-* 2. finish error logic - IN PROGRESS
-*   2.1 change date Validation
-* 3. Change styles and make it in modules
-* 4  Create layout with header and footer for pages
-*   4.1 header must contain links with react router for form and todos list
-* 5 save todos in local storage
-* 6 Remove errors in page.tsx if possible DONE
-* 7. change edit form to modal
-*
+* 1. Refactor useState for fields of todos - DONE
+* 2. Finish error logic - IN PROGRESS
+*   2.1. Change date validation
+* 3. Change styles and make them in modules
+* 4. Create layout with header and footer for pages
+*   4.1. Header must contain links with React Router for form and todos list
+* 5. Save todos in local storage
+* 6. Remove errors in page.tsx if possible - DONE
+* 7. Change edit form to modal
 *
 *
 *
