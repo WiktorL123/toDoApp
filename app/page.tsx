@@ -62,6 +62,7 @@ export default function Home() : JSX.Element {
 
     return (
         <>
+
             <Filter
                 categories={filteredCategories}
                 selectedCategory={selectedCategory}

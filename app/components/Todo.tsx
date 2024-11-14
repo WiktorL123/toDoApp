@@ -2,6 +2,7 @@
 import { JSX } from "react";
 import { FaTrash, FaPencilAlt } from "react-icons/fa";
 import IToDoProps from "@/app/interfaces/IToDoProps";
+import '../globals.css'
 
 export default function Todo({
                                  id,
@@ -25,7 +26,7 @@ export default function Todo({
             <p className={'todo-p'}>
                 data zakończenia zadania: {endDate ? endDate.toLocaleDateString() : "Brak daty zakończenia"}
             </p>
-            <p className={'todo-p'}>typ zadania: {category}</p>
+            <p className={'todo-p'}>kategoria: {category}</p>
             <button onClick={() => onRemove(id)} className={'todo-button'}><FaTrash /></button>
             <button onClick={() => onEdit({ id, name, startDate, endDate, category, description })}>
                 <FaPencilAlt /></button>
