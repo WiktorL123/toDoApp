@@ -6,6 +6,7 @@
 * 4  Create layout with header and footer for pages
 *   4.1 header must contain links with react router for form and todos list
 * 5 save todos in local storage
+* 6 Remove erros in page.tsx if possible
 *
 *
 *
