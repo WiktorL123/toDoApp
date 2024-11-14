@@ -8,7 +8,7 @@
 *   4.1. Header must contain links with React Router for form and todos list
 * 5. Save todos in local storage
 * 6. Remove errors in page.tsx if possible - DONE
-* 7. Change edit form to modal
+* 7. Change editForm to modal
 *
 *
 *
