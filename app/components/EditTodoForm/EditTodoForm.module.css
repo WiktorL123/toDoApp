@@ -1,0 +1,15 @@
+.edit-todo-form *{
+    color: red;
+}
+.edit-todo-form input,
+.edit-todo-form textarea{
+    margin: 5px;
+    color: black;
+}
+.edit-todo-form button{
+    color: white;
+    margin: 5px;
+}
+.edit-todo-form-input{
+    color: black;
+}

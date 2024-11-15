@@ -1,10 +1,10 @@
 'use client';
 import todoData from './data/todos.json';
 import React, { JSX, useState } from "react";
-import TodoList from "@/app/components/TodoList";
+import TodoList from "@/app/components/TodoList/TodoList";
 import ITodo from "@/app/interfaces/IToDo";
-import Filter from "@/app/components/Filter";
-import EditTodoForm from "@/app/components/EditTodoForm";
+import Filter from "@/app/components/Filter/Filter";
+import EditTodoForm from "@/app/components/EditTodoForm/EditTodoForm";
 
 
 
@@ -41,6 +41,7 @@ export default function Home() : JSX.Element {
 
     const handleSaveEdit = (updatedTodo:ITodo)=>{
         setTodos(todos.map(todo=>todo.id===updatedTodo.id ? updatedTodo : todo));
+        setEditingTodo(null)
     }
     const handleCancelEdit = () =>{
         setEditingTodo(null);
@@ -51,9 +52,6 @@ export default function Home() : JSX.Element {
     const handleChangeCategory = (category: string) => {
         setSelectedCategory(category);
     };
-    const handleCloseEdit=()=>{
-        setEditingTodo(null);
-    }
 
 
     const filteredTodos = selectedCategory !== 'all'
@@ -89,7 +87,7 @@ export default function Home() : JSX.Element {
                 todo={editingTodo}
                 onSave={handleSaveEdit}
                 onCancel={handleCancelEdit}
-                onClose={handleCloseEdit}
+
 
                 />
             )}

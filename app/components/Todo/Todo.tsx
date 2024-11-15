@@ -2,7 +2,7 @@
 import { JSX } from "react";
 import { FaTrash, FaPencilAlt } from "react-icons/fa";
 import IToDoProps from "@/app/interfaces/IToDoProps";
-import '../globals.css'
+import '../../globals.css'
 
 export default function Todo({
                                  id,

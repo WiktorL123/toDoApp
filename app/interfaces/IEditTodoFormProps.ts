@@ -4,5 +4,5 @@ export default interface IEditTodoFormProps {
     todo: ITodo
     onSave: (todo: ITodo) => void
     onCancel: () => void,
-    onClose: ()=>void
+
 }

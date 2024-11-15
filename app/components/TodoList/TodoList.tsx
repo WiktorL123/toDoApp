@@ -1,5 +1,5 @@
 'use client'
-import Todo from "@/app/components/Todo";
+import Todo from "@/app/components/Todo/Todo";
 import IToDoListProps from "@/app/interfaces/IToDoListProps";
 
 

@@ -1,8 +1,8 @@
 /*
 *TODO:
 * 1. Refactor useState for fields of todos - DONE
-* 2. Finish error logic - IN PROGRESS
-*   2.1. Change date validation
+* 2. Finish error logic - DONE
+*   2.1. Change date validation DONE
 * 3. Change styles and make them in modules
 * 4. Create layout with header and footer for pages
 *   4.1. Header must contain links with React Router for form and todos list
@@ -13,15 +13,50 @@
 *
 *
 *  */
-
+'use client'
 import IEditTodoFormProps from "@/app/interfaces/IEditTodoFormProps";
 import {useState} from "react";
 import ITodo from "@/app/interfaces/IToDo";
-import '../globals.css'
+import '../EditTodoForm/EditTodoForm.module.css'
 
-const isValidDate = (date:string) :boolean =>{
-    return !isNaN(new Date(date).getTime());
+const isValidDate = (date: string): boolean =>{
+    if(!date) {
+        return false
+        }
+    const [year, month, day] = date.split('-').map(Number)
+    if (
+        isNaN(year) || isNaN(month) || isNaN(day)  ||
+        year < 1 || month < 1 || month > 12 || day < 1 || day > 31
+        ) {
+        return false
+    }
+    const parsedDate = new Date(date)
+    return (
+        parsedDate.getFullYear() === year &&
+        parsedDate.getMonth() + 1  === month &&
+        parsedDate.getDate() === day
+    )
 }
+// const isValidDate = (date: string): boolean => {
+//     if (!date) return false;
+//
+//     const [year, month, day] = date.split('-').map(Number);
+//
+//     if (
+//         isNaN(year) || isNaN(month) || isNaN(day) ||
+//         year < 1 || month < 1 || month > 12 || day < 1 || day > 31
+//     ) {
+//         return false;
+//     }
+//
+//     const parsedDate = new Date(date);
+//     return (
+//         parsedDate.getFullYear() === year &&
+//         parsedDate.getMonth() + 1 === month &&
+//         parsedDate.getDate() === day
+//     );
+// };
+
 
 const validateStringInput = (inputValue:string)  =>{
     if(!inputValue.trim())
@@ -36,10 +71,12 @@ const validateStartDate = (startDate: string, endDate: string) => {
     console.log('38', isValidDate(startDate))
 
     if (!isValidDate(startDate)) {
+        console.log('start date if 1', startDate)
         return 'data rozpoczęcia jest niepoprawna';
     }
 
     if (endDate && !isValidDate(endDate)) {
+        console.log('start date if 1')
         return 'data zakończenia jest niepoprawna';
     }
 
@@ -56,6 +93,7 @@ const validateEndDate = (startDate: string, endDate: string) => {
     }
 
     if (!isValidDate(endDate)) {
+        console.log('end date if 1')
         return 'data zakończenia jest niepoprawna';
     }
 
@@ -69,7 +107,7 @@ const validateEndDate = (startDate: string, endDate: string) => {
 
 
 
-export default function EditTodoForm({todo, onSave, onCancel, onClose}:IEditTodoFormProps) {
+export default function EditTodoForm({todo, onSave, onCancel}:IEditTodoFormProps) {
 
 
 
@@ -107,6 +145,7 @@ export default function EditTodoForm({todo, onSave, onCancel, onClose}:IEditTodo
     const handleValidate = () =>{
         const newErrors:{[key:string] :string} = {}
 
+
         const nameError = validateStringInput(formData.name)
         if (nameError)
             newErrors.name=nameError;
@@ -140,6 +179,7 @@ export default function EditTodoForm({todo, onSave, onCancel, onClose}:IEditTodo
             <label htmlFor={'name'}>nazwa zadania</label>
             <input
                 id={'name'}
+                className={'edit-todo-form-input'}
                 value={formData.name}
                 onChange={(e)=>handleChange("name", e.target.value)}
             />
@@ -147,13 +187,17 @@ export default function EditTodoForm({todo, onSave, onCancel, onClose}:IEditTodo
             <label htmlFor={'description'}>opis zadania</label>
             <textarea
                 id={'description'}
+                className={'edit-todo-form-input'}
                 value={formData.description}
                 onChange={(e) => handleChange('description', e.target.value)}
             />
             {errors.description && <p className={'error-p'}>{errors.description}</p>}
             <label htmlFor={'startDate'}>data rozpoczęcia</label>
             <input
+                type={'date'}
                 id={'startDate'}
+                className={'edit-todo-form-input'}
+
                 value={formData.startDate}
                 onChange={
                 (e)=>handleChange('startDate', e.target.value)}
@@ -161,7 +205,9 @@ export default function EditTodoForm({todo, onSave, onCancel, onClose}:IEditTodo
             {errors.startDate && <p className={'error-p'}>{errors.startDate}</p>}
             <label htmlFor={'endDate'}>data zakonczenia</label>
             <input
+                type={'date'}
                 id={'endDate'}
+                className={'edit-todo-form-input'}
                 value={formData.endDate}
                 onChange={
                        (e)=>handleChange('endDate', e.target.value)}
@@ -171,6 +217,7 @@ export default function EditTodoForm({todo, onSave, onCancel, onClose}:IEditTodo
             <label htmlFor={'category'}>kategoria</label>
             <input
                 id={'category'}
+                className={'edit-todo-form-input'}
                 value={formData.category}
                 onChange={
                 (e) =>handleChange('category', e.target.value)}
@@ -178,7 +225,7 @@ export default function EditTodoForm({todo, onSave, onCancel, onClose}:IEditTodo
             {errors.category && <p className={'error-p'}>{errors.category}</p>}
             <button onClick={handleSave}>zapisz</button>
             <button onClick={onCancel}>anuluj</button>
-            <button onClick={onClose} onSubmit={handleValidate}>[zamknij]</button>
+
         </div>
     )
 }
