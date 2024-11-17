@@ -13,12 +13,14 @@
 *
 *
 *  */
+
 'use client'
 import IEditTodoFormProps from "@/app/interfaces/IEditTodoFormProps";
 import {useState} from "react";
 import ITodo from "@/app/interfaces/IToDo";
 import '../EditTodoForm/EditTodoForm.module.css'
-
+import {FaSave} from "react-icons/fa";
+import {FaTimes} from 'react-icons/fa';
 const isValidDate = (date: string): boolean =>{
     if(!date) {
         return false
@@ -37,26 +39,6 @@ const isValidDate = (date: string): boolean =>{
         parsedDate.getDate() === day
     )
 }
-// const isValidDate = (date: string): boolean => {
-//     if (!date) return false;
-//
-//     const [year, month, day] = date.split('-').map(Number);
-//
-//     if (
-//         isNaN(year) || isNaN(month) || isNaN(day) ||
-//         year < 1 || month < 1 || month > 12 || day < 1 || day > 31
-//     ) {
-//         return false;
-//     }
-//
-//     const parsedDate = new Date(date);
-//     return (
-//         parsedDate.getFullYear() === year &&
-//         parsedDate.getMonth() + 1 === month &&
-//         parsedDate.getDate() === day
-//     );
-// };
-
 
 const validateStringInput = (inputValue:string)  =>{
     if(!inputValue.trim())
@@ -119,7 +101,7 @@ export default function EditTodoForm({todo, onSave, onCancel}:IEditTodoFormProps
         category: todo.category
     })
 
-    const [errors, setErrors] = useState<{[key:string] :string}>({})
+            const [errors, setErrors] = useState<{[key:string] :string}>({})
 
     const handleSave = () => {
         if (handleValidate()){
